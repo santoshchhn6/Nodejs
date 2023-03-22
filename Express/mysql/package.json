@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "8": "^0.0.1",
+    "express": "^4.17.3",
+    "formidable": "^2.0.1",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.7.2",
+    "upper-case": "^2.0.2"
+  },
+  "name": "node",
+  "version": "1.0.0",
+  "description": "This is the data app by Santosh Chauhan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "example",
+    "data"
+  ],
+  "author": "Santosh Chauhan",
+  "license": "MIT"
+}

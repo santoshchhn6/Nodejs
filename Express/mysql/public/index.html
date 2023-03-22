@@ -1,0 +1,60 @@
+<!Doctype html>
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+           
+           function send(){
+                if('geolocation' in navigator){
+                    console.log('geolocation available');
+                    navigator.geolocation.getCurrentPosition(async position =>  {
+                        const lat=position.coords.latitude;
+                        const lon=position.coords.longitude;
+                        document.getElementById('latitude').textContent=lat;
+                        document.getElementById('longitude').textContent=lon;
+
+                        const now=new Date();
+                        const date=now.toISOString().split('T')[0];
+                        const t=now.toISOString().split('T')[1];
+                        const time=t.substr(0,t.length-1);
+                        const timezone=(new Date()).getTimezoneOffset()/60;
+                        const browser=navigator.userAgent;
+                        const platform=navigator.platform;
+                        const screenW=screen.width;
+                        const screenH=screen.height;
+                        
+                        const data={
+                            lat, 
+                            lon,
+                            date,
+                            time,
+                            timezone,
+                            browser,
+                            platform,
+                            screenW,
+                            screenH
+                        };
+                        const option={
+                            method:'POST',
+                            headers:{'Content-Type':'application/json'},
+                            body:JSON.stringify(data)
+                        };
+                        const response=await fetch('/api',option);
+                        const json=await response.json();
+                        console.log(json);
+                    });
+                }else{
+                    console.log('geolocation not available');
+                }
+            }
+
+        </script>
+        <h1>Hello World!!!</h1>
+        <p>
+            latitude: <span id="latitude"></span>&deg;</br>
+            longitude: <span id="longitude"></span>&deg</br>
+            <input type="submit" onclick="send()">
+        </p>
+    </body>
+</html>
